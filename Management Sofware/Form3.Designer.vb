@@ -109,16 +109,18 @@ Partial Class Form3
         Panel1.Controls.Add(list)
         Panel1.Controls.Add(emaildisplay)
         Panel1.Controls.Add(pfpname)
-        Panel1.Location = New Point(-4, -3)
+        Panel1.Location = New Point(-5, -4)
+        Panel1.Margin = New Padding(3, 4, 3, 4)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(218, 697)
+        Panel1.Size = New Size(249, 929)
         Panel1.TabIndex = 0
         ' 
         ' saved
         ' 
-        saved.Location = New Point(16, 457)
+        saved.Location = New Point(18, 609)
+        saved.Margin = New Padding(3, 4, 3, 4)
         saved.Name = "saved"
-        saved.Size = New Size(187, 44)
+        saved.Size = New Size(214, 59)
         saved.TabIndex = 6
         saved.Text = "Save"
         saved.UseVisualStyleBackColor = True
@@ -131,25 +133,28 @@ Partial Class Form3
         Panel2.Controls.Add(logo)
         Panel2.Controls.Add(Label4)
         Panel2.Controls.Add(Label5)
-        Panel2.Location = New Point(25, 20)
+        Panel2.Location = New Point(29, 27)
+        Panel2.Margin = New Padding(3, 4, 3, 4)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(171, 172)
+        Panel2.Size = New Size(195, 229)
         Panel2.TabIndex = 5
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(20, 383)
+        Button1.Location = New Point(23, 511)
+        Button1.Margin = New Padding(3, 4, 3, 4)
         Button1.Name = "Button1"
-        Button1.Size = New Size(151, 44)
+        Button1.Size = New Size(173, 59)
         Button1.TabIndex = 4
         Button1.Text = "Log Out"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(20, 320)
+        Button2.Location = New Point(23, 427)
+        Button2.Margin = New Padding(3, 4, 3, 4)
         Button2.Name = "Button2"
-        Button2.Size = New Size(151, 44)
+        Button2.Size = New Size(173, 59)
         Button2.TabIndex = 3
         Button2.Text = "List of Student"
         Button2.UseVisualStyleBackColor = True
@@ -157,9 +162,10 @@ Partial Class Form3
         ' logo
         ' 
         logo.Image = My.Resources.Resources.df4e968f_5a9f_4bc0_bc7d_aba5cedd3f60_removebg_preview__2_
-        logo.Location = New Point(8, 10)
+        logo.Location = New Point(9, 13)
+        logo.Margin = New Padding(3, 4, 3, 4)
         logo.Name = "logo"
-        logo.Size = New Size(155, 149)
+        logo.Size = New Size(177, 199)
         logo.SizeMode = PictureBoxSizeMode.StretchImage
         logo.TabIndex = 2
         logo.TabStop = False
@@ -169,9 +175,9 @@ Partial Class Form3
         Label4.AutoSize = True
         Label4.BackColor = Color.Transparent
         Label4.ForeColor = Color.White
-        Label4.Location = New Point(20, 273)
+        Label4.Location = New Point(23, 364)
         Label4.Name = "Label4"
-        Label4.Size = New Size(36, 15)
+        Label4.Size = New Size(46, 20)
         Label4.TabIndex = 1
         Label4.Text = "email"
         Label4.TextAlign = ContentAlignment.MiddleCenter
@@ -182,9 +188,9 @@ Partial Class Form3
         Label5.BackColor = Color.Transparent
         Label5.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label5.ForeColor = Color.White
-        Label5.Location = New Point(20, 231)
+        Label5.Location = New Point(23, 308)
         Label5.Name = "Label5"
-        Label5.Size = New Size(62, 25)
+        Label5.Size = New Size(78, 32)
         Label5.TabIndex = 0
         Label5.Text = "Name"
         ' 
@@ -193,27 +199,30 @@ Partial Class Form3
         clear.BackColor = Color.Snow
         clear.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         clear.ForeColor = Color.Black
-        clear.Location = New Point(16, 512)
+        clear.Location = New Point(18, 683)
+        clear.Margin = New Padding(3, 4, 3, 4)
         clear.Name = "clear"
-        clear.Size = New Size(187, 41)
+        clear.Size = New Size(214, 55)
         clear.TabIndex = 7
         clear.Text = "Clear"
         clear.UseVisualStyleBackColor = False
         ' 
         ' logout
         ' 
-        logout.Location = New Point(16, 625)
+        logout.Location = New Point(18, 833)
+        logout.Margin = New Padding(3, 4, 3, 4)
         logout.Name = "logout"
-        logout.Size = New Size(187, 44)
+        logout.Size = New Size(214, 59)
         logout.TabIndex = 4
         logout.Text = "Log Out"
         logout.UseVisualStyleBackColor = True
         ' 
         ' list
         ' 
-        list.Location = New Point(16, 565)
+        list.Location = New Point(18, 753)
+        list.Margin = New Padding(3, 4, 3, 4)
         list.Name = "list"
-        list.Size = New Size(187, 44)
+        list.Size = New Size(214, 59)
         list.TabIndex = 3
         list.Text = "List of Student"
         list.UseVisualStyleBackColor = True
@@ -224,9 +233,9 @@ Partial Class Form3
         emaildisplay.BackColor = Color.Transparent
         emaildisplay.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         emaildisplay.ForeColor = Color.White
-        emaildisplay.Location = New Point(16, 255)
+        emaildisplay.Location = New Point(18, 340)
         emaildisplay.Name = "emaildisplay"
-        emaildisplay.Size = New Size(39, 17)
+        emaildisplay.Size = New Size(51, 23)
         emaildisplay.TabIndex = 1
         emaildisplay.Text = "email"
         emaildisplay.TextAlign = ContentAlignment.MiddleCenter
@@ -237,124 +246,131 @@ Partial Class Form3
         pfpname.BackColor = Color.Transparent
         pfpname.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         pfpname.ForeColor = Color.White
-        pfpname.Location = New Point(16, 224)
+        pfpname.Location = New Point(18, 299)
         pfpname.Name = "pfpname"
-        pfpname.Size = New Size(62, 25)
+        pfpname.Size = New Size(78, 32)
         pfpname.TabIndex = 0
         pfpname.Text = "Name"
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(225, 53)
+        Label1.Location = New Point(257, 71)
         Label1.Name = "Label1"
-        Label1.Size = New Size(55, 15)
+        Label1.Size = New Size(68, 20)
         Label1.TabIndex = 1
         Label1.Text = "Fistname"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(414, 53)
+        Label2.Location = New Point(473, 71)
         Label2.Name = "Label2"
-        Label2.Size = New Size(58, 15)
+        Label2.Size = New Size(72, 20)
         Label2.TabIndex = 2
         Label2.Text = "Lastname"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(615, 53)
+        Label3.Location = New Point(703, 71)
         Label3.Name = "Label3"
-        Label3.Size = New Size(74, 15)
+        Label3.Size = New Size(93, 20)
         Label3.TabIndex = 3
         Label3.Text = "Middlename"
         ' 
         ' namefillup
         ' 
-        namefillup.Location = New Point(284, 50)
+        namefillup.Location = New Point(325, 67)
+        namefillup.Margin = New Padding(3, 4, 3, 4)
         namefillup.Name = "namefillup"
-        namefillup.Size = New Size(106, 23)
+        namefillup.Size = New Size(121, 27)
         namefillup.TabIndex = 4
         ' 
         ' lastnamefillup
         ' 
-        lastnamefillup.Location = New Point(490, 50)
+        lastnamefillup.Location = New Point(560, 67)
+        lastnamefillup.Margin = New Padding(3, 4, 3, 4)
         lastnamefillup.Name = "lastnamefillup"
-        lastnamefillup.Size = New Size(110, 23)
+        lastnamefillup.Size = New Size(125, 27)
         lastnamefillup.TabIndex = 5
         ' 
         ' middlenamefillup
         ' 
-        middlenamefillup.Location = New Point(695, 50)
+        middlenamefillup.Location = New Point(794, 67)
+        middlenamefillup.Margin = New Padding(3, 4, 3, 4)
         middlenamefillup.Name = "middlenamefillup"
-        middlenamefillup.Size = New Size(125, 23)
+        middlenamefillup.Size = New Size(142, 27)
         middlenamefillup.TabIndex = 6
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(225, 95)
+        Label6.Location = New Point(257, 127)
         Label6.Name = "Label6"
-        Label6.Size = New Size(44, 15)
+        Label6.Size = New Size(54, 20)
         Label6.TabIndex = 7
         Label6.Text = "Course"
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(225, 132)
+        Label7.Location = New Point(257, 176)
         Label7.Name = "Label7"
-        Label7.Size = New Size(29, 15)
+        Label7.Size = New Size(37, 20)
         Label7.TabIndex = 9
         Label7.Text = "Year"
         ' 
         ' year
         ' 
-        year.Location = New Point(284, 132)
+        year.Location = New Point(325, 176)
+        year.Margin = New Padding(3, 4, 3, 4)
         year.Name = "year"
-        year.Size = New Size(91, 23)
+        year.Size = New Size(103, 27)
         year.TabIndex = 10
         ' 
         ' Label8
         ' 
         Label8.AutoSize = True
-        Label8.Location = New Point(223, 173)
+        Label8.Location = New Point(255, 231)
         Label8.Name = "Label8"
-        Label8.Size = New Size(46, 15)
+        Label8.Size = New Size(58, 20)
         Label8.TabIndex = 11
         Label8.Text = "Section"
         ' 
         ' section
         ' 
-        section.Location = New Point(284, 170)
+        section.Location = New Point(325, 227)
+        section.Margin = New Padding(3, 4, 3, 4)
         section.Name = "section"
-        section.Size = New Size(91, 23)
+        section.Size = New Size(103, 27)
         section.TabIndex = 12
         ' 
         ' status
         ' 
         status.FormattingEnabled = True
-        status.Location = New Point(490, 92)
+        status.Location = New Point(560, 123)
+        status.Margin = New Padding(3, 4, 3, 4)
         status.Name = "status"
-        status.Size = New Size(110, 23)
+        status.Size = New Size(125, 28)
         status.TabIndex = 13
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
-        Label9.Location = New Point(414, 95)
+        Label9.Location = New Point(473, 127)
         Label9.Name = "Label9"
-        Label9.Size = New Size(65, 15)
+        Label9.Size = New Size(81, 20)
         Label9.TabIndex = 14
         Label9.Text = "Civil Status"
         ' 
         ' male
         ' 
         male.AutoSize = True
-        male.Location = New Point(559, 15)
+        male.Location = New Point(639, 20)
+        male.Margin = New Padding(3, 4, 3, 4)
         male.Name = "male"
-        male.Size = New Size(51, 19)
+        male.Size = New Size(63, 24)
         male.TabIndex = 15
         male.TabStop = True
         male.Text = "Male"
@@ -363,9 +379,10 @@ Partial Class Form3
         ' female
         ' 
         female.AutoSize = True
-        female.Location = New Point(626, 15)
+        female.Location = New Point(715, 20)
+        female.Margin = New Padding(3, 4, 3, 4)
         female.Name = "female"
-        female.Size = New Size(63, 19)
+        female.Size = New Size(78, 24)
         female.TabIndex = 16
         female.TabStop = True
         female.Text = "Female"
@@ -374,357 +391,381 @@ Partial Class Form3
         ' Label10
         ' 
         Label10.AutoSize = True
-        Label10.Location = New Point(225, 17)
+        Label10.Location = New Point(257, 23)
         Label10.Name = "Label10"
-        Label10.Size = New Size(62, 15)
+        Label10.Size = New Size(79, 20)
         Label10.TabIndex = 17
         Label10.Text = "Student ID"
         ' 
         ' id
         ' 
-        id.Location = New Point(293, 12)
+        id.Location = New Point(335, 16)
+        id.Margin = New Padding(3, 4, 3, 4)
         id.Name = "id"
-        id.Size = New Size(245, 23)
+        id.Size = New Size(279, 27)
         id.TabIndex = 18
         ' 
         ' Label11
         ' 
         Label11.AutoSize = True
-        Label11.Location = New Point(414, 132)
+        Label11.Location = New Point(473, 176)
         Label11.Name = "Label11"
-        Label11.Size = New Size(65, 15)
+        Label11.Size = New Size(81, 20)
         Label11.TabIndex = 19
         Label11.Text = "Height (m)"
         ' 
         ' Label12
         ' 
         Label12.AutoSize = True
-        Label12.Location = New Point(615, 132)
+        Label12.Location = New Point(703, 176)
         Label12.Name = "Label12"
-        Label12.Size = New Size(45, 15)
+        Label12.Size = New Size(56, 20)
         Label12.TabIndex = 20
         Label12.Text = "Weight"
         ' 
         ' height
         ' 
-        height.Location = New Point(490, 129)
+        height.Location = New Point(560, 172)
+        height.Margin = New Padding(3, 4, 3, 4)
         height.Name = "height"
-        height.Size = New Size(110, 23)
+        height.Size = New Size(125, 27)
         height.TabIndex = 21
         ' 
         ' weight
         ' 
-        weight.Location = New Point(676, 129)
+        weight.Location = New Point(773, 172)
+        weight.Margin = New Padding(3, 4, 3, 4)
         weight.Name = "weight"
-        weight.Size = New Size(144, 23)
+        weight.Size = New Size(164, 27)
         weight.TabIndex = 22
         ' 
         ' Label13
         ' 
         Label13.AutoSize = True
-        Label13.Location = New Point(615, 95)
+        Label13.Location = New Point(703, 127)
         Label13.Name = "Label13"
-        Label13.Size = New Size(61, 15)
+        Label13.Size = New Size(77, 20)
         Label13.TabIndex = 23
         Label13.Text = "Mobile no"
         ' 
         ' mobileno
         ' 
-        mobileno.Location = New Point(695, 92)
+        mobileno.Location = New Point(794, 123)
+        mobileno.Margin = New Padding(3, 4, 3, 4)
         mobileno.Name = "mobileno"
-        mobileno.Size = New Size(125, 23)
+        mobileno.Size = New Size(142, 27)
         mobileno.TabIndex = 24
         ' 
         ' Label14
         ' 
         Label14.AutoSize = True
-        Label14.Location = New Point(414, 173)
+        Label14.Location = New Point(473, 231)
         Label14.Name = "Label14"
-        Label14.Size = New Size(71, 15)
+        Label14.Size = New Size(89, 20)
         Label14.TabIndex = 25
         Label14.Text = "Complexion"
         ' 
         ' complexion
         ' 
-        complexion.Location = New Point(490, 173)
+        complexion.Location = New Point(560, 231)
+        complexion.Margin = New Padding(3, 4, 3, 4)
         complexion.Name = "complexion"
-        complexion.Size = New Size(330, 23)
+        complexion.Size = New Size(377, 27)
         complexion.TabIndex = 26
         ' 
         ' Label15
         ' 
         Label15.AutoSize = True
-        Label15.Location = New Point(225, 212)
+        Label15.Location = New Point(257, 283)
         Label15.Name = "Label15"
-        Label15.Size = New Size(73, 15)
+        Label15.Size = New Size(91, 20)
         Label15.TabIndex = 27
         Label15.Text = "City Address"
         ' 
         ' cityadds
         ' 
-        cityadds.Location = New Point(304, 209)
+        cityadds.Location = New Point(347, 279)
+        cityadds.Margin = New Padding(3, 4, 3, 4)
         cityadds.Name = "cityadds"
-        cityadds.Size = New Size(516, 23)
+        cityadds.Size = New Size(589, 27)
         cityadds.TabIndex = 28
         ' 
         ' Label16
         ' 
         Label16.AutoSize = True
-        Label16.Location = New Point(225, 248)
+        Label16.Location = New Point(257, 331)
         Label16.Name = "Label16"
-        Label16.Size = New Size(104, 15)
+        Label16.Size = New Size(130, 20)
         Label16.TabIndex = 29
         Label16.Text = "Provincial Address"
         ' 
         ' provincialadds
         ' 
-        provincialadds.Location = New Point(335, 245)
+        provincialadds.Location = New Point(383, 327)
+        provincialadds.Margin = New Padding(3, 4, 3, 4)
         provincialadds.Name = "provincialadds"
-        provincialadds.Size = New Size(485, 23)
+        provincialadds.Size = New Size(554, 27)
         provincialadds.TabIndex = 30
         ' 
         ' Label17
         ' 
         Label17.AutoSize = True
-        Label17.Location = New Point(225, 290)
+        Label17.Location = New Point(257, 387)
         Label17.Name = "Label17"
-        Label17.Size = New Size(157, 15)
+        Label17.Size = New Size(198, 20)
         Label17.TabIndex = 31
         Label17.Text = "Highschool General Average"
         ' 
         ' genave
         ' 
-        genave.Location = New Point(388, 287)
+        genave.Location = New Point(443, 383)
+        genave.Margin = New Padding(3, 4, 3, 4)
         genave.Name = "genave"
-        genave.Size = New Size(97, 23)
+        genave.Size = New Size(110, 27)
         genave.TabIndex = 32
         ' 
         ' Label18
         ' 
         Label18.AutoSize = True
-        Label18.Location = New Point(512, 290)
+        Label18.Location = New Point(585, 387)
         Label18.Name = "Label18"
-        Label18.Size = New Size(50, 15)
+        Label18.Size = New Size(64, 20)
         Label18.TabIndex = 33
         Label18.Text = "Religion"
         ' 
         ' religion
         ' 
-        religion.Location = New Point(568, 287)
+        religion.Location = New Point(649, 383)
+        religion.Margin = New Padding(3, 4, 3, 4)
         religion.Name = "religion"
-        religion.Size = New Size(252, 23)
+        religion.Size = New Size(287, 27)
         religion.TabIndex = 34
         ' 
         ' Label19
         ' 
         Label19.AutoSize = True
-        Label19.Location = New Point(225, 327)
+        Label19.Location = New Point(257, 436)
         Label19.Name = "Label19"
-        Label19.Size = New Size(327, 15)
+        Label19.Size = New Size(414, 20)
         Label19.TabIndex = 35
         Label19.Text = "If working please indicate the name and address of employer"
         ' 
         ' employer
         ' 
-        employer.Location = New Point(568, 324)
+        employer.Location = New Point(649, 432)
+        employer.Margin = New Padding(3, 4, 3, 4)
         employer.Name = "employer"
-        employer.Size = New Size(252, 23)
+        employer.Size = New Size(287, 27)
         employer.TabIndex = 36
         ' 
         ' Label20
         ' 
         Label20.AutoSize = True
-        Label20.Location = New Point(225, 366)
+        Label20.Location = New Point(257, 488)
         Label20.Name = "Label20"
-        Label20.Size = New Size(319, 15)
+        Label20.Size = New Size(400, 20)
         Label20.TabIndex = 37
         Label20.Text = "Person to be contacted in case of accident or serious illness"
         ' 
         ' incident
         ' 
-        incident.Location = New Point(568, 363)
+        incident.Location = New Point(649, 484)
+        incident.Margin = New Padding(3, 4, 3, 4)
         incident.Name = "incident"
-        incident.Size = New Size(252, 23)
+        incident.Size = New Size(287, 27)
         incident.TabIndex = 38
         ' 
         ' Label21
         ' 
         Label21.AutoSize = True
-        Label21.Location = New Point(225, 415)
+        Label21.Location = New Point(257, 553)
         Label21.Name = "Label21"
-        Label21.Size = New Size(49, 15)
+        Label21.Size = New Size(62, 20)
         Label21.TabIndex = 39
         Label21.Text = "Address"
         ' 
         ' address
         ' 
-        address.Location = New Point(285, 410)
+        address.Location = New Point(326, 547)
+        address.Margin = New Padding(3, 4, 3, 4)
         address.Name = "address"
-        address.Size = New Size(535, 23)
+        address.Size = New Size(611, 27)
         address.TabIndex = 40
         ' 
         ' Label22
         ' 
         Label22.AutoSize = True
-        Label22.Location = New Point(225, 461)
+        Label22.Location = New Point(257, 615)
         Label22.Name = "Label22"
-        Label22.Size = New Size(72, 15)
+        Label22.Size = New Size(91, 20)
         Label22.TabIndex = 41
         Label22.Text = "Relationship"
         ' 
         ' relationship
         ' 
-        relationship.Location = New Point(303, 458)
+        relationship.Location = New Point(346, 611)
+        relationship.Margin = New Padding(3, 4, 3, 4)
         relationship.Name = "relationship"
-        relationship.Size = New Size(168, 23)
+        relationship.Size = New Size(191, 27)
         relationship.TabIndex = 42
         ' 
         ' Label23
         ' 
         Label23.AutoSize = True
-        Label23.Location = New Point(500, 461)
+        Label23.Location = New Point(571, 615)
         Label23.Name = "Label23"
-        Label23.Size = New Size(66, 15)
+        Label23.Size = New Size(81, 20)
         Label23.TabIndex = 43
         Label23.Text = "Contact no"
         ' 
         ' contactno
         ' 
-        contactno.Location = New Point(573, 458)
+        contactno.Location = New Point(655, 611)
+        contactno.Margin = New Padding(3, 4, 3, 4)
         contactno.Name = "contactno"
-        contactno.Size = New Size(247, 23)
+        contactno.Size = New Size(282, 27)
         contactno.TabIndex = 44
         ' 
         ' Label24
         ' 
         Label24.AutoSize = True
-        Label24.Location = New Point(852, 98)
+        Label24.Location = New Point(974, 131)
         Label24.Name = "Label24"
-        Label24.Size = New Size(73, 15)
+        Label24.Size = New Size(94, 20)
         Label24.TabIndex = 45
         Label24.Text = "Date of birth"
         ' 
         ' Label25
         ' 
         Label25.AutoSize = True
-        Label25.Location = New Point(503, 503)
+        Label25.Location = New Point(575, 671)
         Label25.Name = "Label25"
-        Label25.Size = New Size(77, 15)
+        Label25.Size = New Size(97, 20)
         Label25.TabIndex = 47
         Label25.Text = "Place of birth"
         ' 
         ' placeofbirth
         ' 
-        placeofbirth.Location = New Point(586, 500)
+        placeofbirth.Location = New Point(670, 667)
+        placeofbirth.Margin = New Padding(3, 4, 3, 4)
         placeofbirth.Name = "placeofbirth"
-        placeofbirth.Size = New Size(234, 23)
+        placeofbirth.Size = New Size(267, 27)
         placeofbirth.TabIndex = 48
         ' 
         ' calendar
         ' 
-        calendar.Location = New Point(947, 129)
+        calendar.Location = New Point(1082, 172)
+        calendar.Margin = New Padding(10, 12, 10, 12)
         calendar.Name = "calendar"
         calendar.TabIndex = 49
         ' 
         ' datebirth
         ' 
-        datebirth.Location = New Point(947, 94)
+        datebirth.Location = New Point(1082, 125)
+        datebirth.Margin = New Padding(3, 4, 3, 4)
         datebirth.Name = "datebirth"
-        datebirth.Size = New Size(225, 23)
+        datebirth.Size = New Size(257, 27)
         datebirth.TabIndex = 50
         ' 
         ' Label26
         ' 
         Label26.AutoSize = True
-        Label26.Location = New Point(852, 50)
+        Label26.Location = New Point(974, 67)
         Label26.Name = "Label26"
-        Label26.Size = New Size(79, 15)
+        Label26.Size = New Size(101, 20)
         Label26.TabIndex = 51
         Label26.Text = "Email address"
         ' 
         ' emailadds
         ' 
-        emailadds.Location = New Point(947, 45)
+        emailadds.Location = New Point(1082, 60)
+        emailadds.Margin = New Padding(3, 4, 3, 4)
         emailadds.Name = "emailadds"
-        emailadds.Size = New Size(225, 23)
+        emailadds.Size = New Size(257, 27)
         emailadds.TabIndex = 52
         ' 
         ' Label27
         ' 
         Label27.AutoSize = True
-        Label27.Location = New Point(225, 508)
+        Label27.Location = New Point(257, 677)
         Label27.Name = "Label27"
-        Label27.Size = New Size(79, 15)
+        Label27.Size = New Size(99, 20)
         Label27.TabIndex = 53
         Label27.Text = "Telephone no"
         ' 
         ' telephoneno
         ' 
-        telephoneno.Location = New Point(310, 505)
+        telephoneno.Location = New Point(354, 673)
+        telephoneno.Margin = New Padding(3, 4, 3, 4)
         telephoneno.Name = "telephoneno"
-        telephoneno.Size = New Size(162, 23)
+        telephoneno.Size = New Size(185, 27)
         telephoneno.TabIndex = 54
         ' 
         ' gender
         ' 
-        gender.Location = New Point(695, 12)
+        gender.Location = New Point(794, 16)
+        gender.Margin = New Padding(3, 4, 3, 4)
         gender.Name = "gender"
-        gender.Size = New Size(125, 23)
+        gender.Size = New Size(142, 27)
         gender.TabIndex = 55
         ' 
         ' course
         ' 
         course.FormattingEnabled = True
-        course.Location = New Point(284, 92)
+        course.Location = New Point(325, 123)
+        course.Margin = New Padding(3, 4, 3, 4)
         course.Name = "course"
-        course.Size = New Size(106, 23)
+        course.Size = New Size(121, 28)
         course.TabIndex = 56
         ' 
         ' appointment
         ' 
-        appointment.Location = New Point(949, 326)
+        appointment.Location = New Point(1085, 435)
+        appointment.Margin = New Padding(3, 4, 3, 4)
         appointment.Name = "appointment"
-        appointment.Size = New Size(225, 23)
+        appointment.Size = New Size(257, 27)
         appointment.TabIndex = 59
         ' 
         ' appointmentcalendar
         ' 
-        appointmentcalendar.Location = New Point(949, 361)
+        appointmentcalendar.Location = New Point(1085, 481)
+        appointmentcalendar.Margin = New Padding(10, 12, 10, 12)
         appointmentcalendar.Name = "appointmentcalendar"
         appointmentcalendar.TabIndex = 58
         ' 
         ' Label28
         ' 
         Label28.AutoSize = True
-        Label28.Location = New Point(854, 330)
+        Label28.Location = New Point(976, 440)
         Label28.Name = "Label28"
-        Label28.Size = New Size(71, 15)
+        Label28.Size = New Size(88, 20)
         Label28.TabIndex = 57
         Label28.Text = "Apointment"
         ' 
         ' Label29
         ' 
         Label29.AutoSize = True
-        Label29.Location = New Point(227, 548)
+        Label29.Location = New Point(259, 731)
         Label29.Name = "Label29"
-        Label29.Size = New Size(108, 15)
+        Label29.Size = New Size(134, 20)
         Label29.TabIndex = 60
         Label29.Text = "Student Complains"
         ' 
         ' complain
         ' 
         complain.BorderStyle = BorderStyle.FixedSingle
-        complain.Location = New Point(335, 548)
+        complain.Location = New Point(383, 731)
+        complain.Margin = New Padding(3, 4, 3, 4)
         complain.Multiline = True
         complain.Name = "complain"
-        complain.Size = New Size(841, 118)
+        complain.Size = New Size(961, 157)
         complain.TabIndex = 61
         ' 
         ' Form3
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1193, 689)
+        ClientSize = New Size(1363, 919)
         Controls.Add(complain)
         Controls.Add(Label29)
         Controls.Add(appointment)
@@ -785,6 +826,7 @@ Partial Class Form3
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(Panel1)
+        Margin = New Padding(3, 4, 3, 4)
         Name = "Form3"
         StartPosition = FormStartPosition.Manual
         Text = "Form3"

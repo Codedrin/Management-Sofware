@@ -1,210 +1,145 @@
-﻿Imports Newtonsoft.Json
-Imports Newtonsoft.Json.Linq
-Imports System.Net.Http
-Imports System.Text
+﻿Imports MySql.Data.MySqlClient
 
 Public Class Form3
-    Private Async Sub Form3_LoadAsync(sender As Object, e As EventArgs) Handles MyBase.Load
-        Await LoadUserInfo()
+    Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadUserInfo()
+        InitializeComboBoxes()
     End Sub
 
-    Private Async Function LoadUserInfo() As Task
+    Private Sub LoadUserInfo()
         If Form1.LoggedInEmail = "" Then
             MessageBox.Show("No user is logged in.")
             Return
         End If
 
-        Dim firebaseUrl As String = "https://guidance-management-syst-70349-default-rtdb.firebaseio.com/accounts.json"
+        Try
+            OpenConnection()
 
-        Using client As New HttpClient()
-            Try
-                Dim response As HttpResponseMessage = Await client.GetAsync(firebaseUrl)
-                If response.IsSuccessStatusCode Then
-                    Dim jsonResponse As String = Await response.Content.ReadAsStringAsync()
-                    Dim accounts As JObject = JObject.Parse(jsonResponse)
+            Dim query As String = "SELECT name, emailadds FROM students WHERE emailadds = @Email"
+            Dim cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@Email", Form1.LoggedInEmail)
 
-                    ' Hanapin ang user gamit ang email
-                    For Each account In accounts
-                        Dim userData As JObject = account.Value
-                        If userData("email").ToString() = Form1.LoggedInEmail Then
-                            pfpname.Text = userData("username").ToString() ' Ipakita ang Username
-                            emaildisplay.Text = userData("email").ToString() ' Ipakita ang Email
-                            Exit For
-                        End If
-                    Next
+            Using reader As MySqlDataReader = cmd.ExecuteReader()
+                If reader.Read() Then
+                    pfpname.Text = reader("name").ToString()
+                    emaildisplay.Text = reader("emailadds").ToString()
                 Else
-                    MessageBox.Show("Failed to retrieve user data.")
+                    MessageBox.Show("User not found.")
                 End If
-            Catch ex As Exception
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
-    End Function
+            End Using
 
-    Private Async Function Form3_Load(sender As Object, e As EventArgs) As Task Handles MyBase.Load
-        ' Tawagin ang function para mag-load ng user info
-        Await LoadUserInfo()
+        Catch ex As Exception
+            MessageBox.Show("Error loading user info: " & ex.Message)
+        Finally
+            CloseConnection()
+        End Try
+    End Sub
 
-        ' I-add ang marital status options sa ComboBox
+    Private Sub InitializeComboBoxes()
         status.Items.Clear()
-        status.Items.Add("Single")
-        status.Items.Add("Married")
-        status.Items.Add("Widowed")
-        status.Items.Add("Separated")
-        status.Items.Add("Divorced")
+        status.Items.AddRange(New String() {"Single", "Married", "Widowed", "Separated", "Divorced"})
 
-        ' I-add ang course options sa ComboBox
         course.Items.Clear()
-        course.Items.Add("BEED")
-        course.Items.Add("BSED")
-        course.Items.Add("BSBA")
-        course.Items.Add("ACT")
-        course.Items.Add("CARE GIVING")
-    End Function
+        course.Items.AddRange(New String() {"BEED", "BSED", "BSBA", "ACT", "CARE GIVING"})
+    End Sub
 
     Private Sub logout_Click(sender As Object, e As EventArgs) Handles logout.Click
-        ' I-clear ang LoggedInEmail
         Form1.LoggedInEmail = ""
-
-        ' Ipakita ulit ang Login Form (Form1)
         Dim loginForm As New Form1()
         loginForm.Show()
-
-        ' Isara ang kasalukuyang form (Form3)
         Me.Close()
     End Sub
 
     Private Sub calendar_DateChanged(sender As Object, e As DateRangeEventArgs) Handles calendar.DateChanged
-        ' I-set ang napiling date sa datebirth textbox
         datebirth.Text = e.Start.ToShortDateString
     End Sub
 
+    Private Sub appointmentcalendar_DateChanged(sender As Object, e As DateRangeEventArgs) Handles appointmentcalendar.DateChanged
+        appointment.Text = e.Start.ToShortDateString
+    End Sub
+
     Private Sub male_CheckedChanged(sender As Object, e As EventArgs) Handles male.CheckedChanged
-        If male.Checked Then
-            gender.Text = "Male"
-        End If
+        If male.Checked Then gender.Text = "Male"
     End Sub
 
     Private Sub female_CheckedChanged(sender As Object, e As EventArgs) Handles female.CheckedChanged
-        If female.Checked Then
-            gender.Text = "Female"
-        End If
+        If female.Checked Then gender.Text = "Female"
     End Sub
 
-    Private Async Function SaveStudentInfo() As Task
-        Dim firebaseUrl As String = "https://guidance-management-syst-70349-default-rtdb.firebaseio.com/students.json"
+    Private Sub saved_Click(sender As Object, e As EventArgs) Handles saved.Click
+        SaveStudentInfo()
+    End Sub
 
-        Dim studentData As New Dictionary(Of String, String) From {
-    {"id", id.Text},
-    {"name", namefillup.Text},
-    {"lastname", lastnamefillup.Text},
-    {"middlename", middlenamefillup.Text},
-    {"course", course.SelectedItem?.ToString()},
-    {"status", status.SelectedItem?.ToString()},
-    {"mobileno", mobileno.Text},
-    {"datebirth", datebirth.Text},
-    {"year", year.Text},
-    {"height", height.Text},
-    {"weight", weight.Text},
-    {"section", section.Text},
-    {"complexion", complexion.Text},
-    {"cityadds", cityadds.Text},
-    {"provincialadds", provincialadds.Text},
-    {"genave", genave.Text},
-    {"religion", religion.Text},
-    {"employer", employer.Text},
-    {"incident", incident.Text},
-    {"address", address.Text},
-    {"relationship", relationship.Text},
-    {"contactno", contactno.Text},
-    {"placeofbirth", placeofbirth.Text},
-    {"emailadds", emailadds.Text},
-    {"telephoneno", telephoneno.Text},
-    {"gender", gender.Text},
-    {"appointment", appointment.Text}, ' Isama ang appointment
-    {"complain", complain.Text} ' Isama ang complain
-}
+    Private Sub SaveStudentInfo()
+        Try
+            OpenConnection()
 
+            Dim query As String = "INSERT INTO students (id, name, lastname, middlename, course, status, mobileno, datebirth, year, height, weight, section, complexion, cityadds, provincialadds, genave, religion, employer, incident, address, relationship, contactno, placeofbirth, emailadds, telephoneno, gender, appointment, complain) " &
+                                  "VALUES (@id, @name, @lastname, @middlename, @course, @status, @mobileno, @datebirth, @year, @height, @weight, @section, @complexion, @cityadds, @provincialadds, @genave, @religion, @employer, @incident, @address, @relationship, @contactno, @placeofbirth, @emailadds, @telephoneno, @gender, @appointment, @complain)"
 
-        Dim json As String = JsonConvert.SerializeObject(studentData)
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@id", id.Text)
+                cmd.Parameters.AddWithValue("@name", namefillup.Text)
+                cmd.Parameters.AddWithValue("@lastname", lastnamefillup.Text)
+                cmd.Parameters.AddWithValue("@middlename", middlenamefillup.Text)
+                cmd.Parameters.AddWithValue("@course", course.SelectedItem?.ToString())
+                cmd.Parameters.AddWithValue("@status", status.SelectedItem?.ToString())
+                cmd.Parameters.AddWithValue("@mobileno", mobileno.Text)
+                cmd.Parameters.AddWithValue("@datebirth", datebirth.Text)
+                cmd.Parameters.AddWithValue("@year", year.Text)
+                cmd.Parameters.AddWithValue("@height", height.Text)
+                cmd.Parameters.AddWithValue("@weight", weight.Text)
+                cmd.Parameters.AddWithValue("@section", section.Text)
+                cmd.Parameters.AddWithValue("@complexion", complexion.Text)
+                cmd.Parameters.AddWithValue("@cityadds", cityadds.Text)
+                cmd.Parameters.AddWithValue("@provincialadds", provincialadds.Text)
+                cmd.Parameters.AddWithValue("@genave", genave.Text)
+                cmd.Parameters.AddWithValue("@religion", religion.Text)
+                cmd.Parameters.AddWithValue("@employer", employer.Text)
+                cmd.Parameters.AddWithValue("@incident", incident.Text)
+                cmd.Parameters.AddWithValue("@address", address.Text)
+                cmd.Parameters.AddWithValue("@relationship", relationship.Text)
+                cmd.Parameters.AddWithValue("@contactno", contactno.Text)
+                cmd.Parameters.AddWithValue("@placeofbirth", placeofbirth.Text)
+                cmd.Parameters.AddWithValue("@emailadds", emailadds.Text)
+                cmd.Parameters.AddWithValue("@telephoneno", telephoneno.Text)
+                cmd.Parameters.AddWithValue("@gender", gender.Text)
+                cmd.Parameters.AddWithValue("@appointment", appointment.Text)
+                cmd.Parameters.AddWithValue("@complain", complain.Text)
 
-        Using client As New HttpClient()
-            Try
-                Dim content As New StringContent(json, Encoding.UTF8, "application/json")
-                Dim response As HttpResponseMessage = Await client.PostAsync(firebaseUrl, content)
+                Dim result = cmd.ExecuteNonQuery()
 
-                If response.IsSuccessStatusCode Then
-                    MessageBox.Show("Student data saved successfully!")
+                If result > 0 Then
+                    MessageBox.Show("Student info saved successfully!")
                 Else
-                    MessageBox.Show("Failed to save data.")
+                    MessageBox.Show("Failed to save student info.")
                 End If
-            Catch ex As Exception
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
-    End Function
+            End Using
 
-    Private Async Sub saved_Click(sender As Object, e As EventArgs) Handles saved.Click
-        Await SaveStudentInfo()
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            CloseConnection()
+        End Try
     End Sub
-
 
     Private Sub clear_Click(sender As Object, e As EventArgs) Handles clear.Click
-        id.Clear()
-        namefillup.Clear()
-        lastnamefillup.Clear()
-        middlenamefillup.Clear()
-        course.SelectedIndex = -1 ' I-clear ang napiling course sa ComboBox
-        status.SelectedIndex = -1 ' I-clear ang marital status sa ComboBox
-        mobileno.Clear()
-        datebirth.Clear()
-        year.Clear()
-        height.Clear()
-        weight.Clear()
-        section.Clear()
-        complexion.Clear()
-        cityadds.Clear()
-        provincialadds.Clear()
-        genave.Clear()
-        religion.Clear()
-        employer.Clear()
-        incident.Clear()
-        address.Clear()
-        relationship.Clear()
-        contactno.Clear()
-        placeofbirth.Clear()
-        emailadds.Clear()
-        telephoneno.Clear()
-        gender.Clear()
+        For Each ctrl As Control In Me.Controls
+            If TypeOf ctrl Is TextBox Then DirectCast(ctrl, TextBox).Clear()
+        Next
 
+        course.SelectedIndex = -1
+        status.SelectedIndex = -1
         male.Checked = False
         female.Checked = False
-
-        calendar.SetDate(DateTime.Today)
-
-        ' I-clear din ang appointment at complain fields
-        appointment.Clear()
-        complain.Clear()
-
-        MessageBox.Show("All fields have been cleared.")
+        gender.Clear()
+        calendar.SetDate(Date.Today)
+        appointmentcalendar.SetDate(Date.Today)
+        MessageBox.Show("All fields cleared.")
     End Sub
-
 
     Private Sub list_Click(sender As Object, e As EventArgs) Handles list.Click
         Dim departmentForm As New Listof_department()
         departmentForm.Show()
-    End Sub
-
-    Private Sub appointment_TextChanged(sender As Object, e As EventArgs) Handles appointment.TextChanged
-
-    End Sub
-
-    Private Sub appointmentcalendar_DateChanged(sender As Object, e As DateRangeEventArgs) Handles appointmentcalendar.DateChanged
-        appointment.Text = e.Start.ToShortDateString()
-    End Sub
-
-
-    Private Sub complain_TextChanged(sender As Object, e As EventArgs) Handles complain.TextChanged
-
     End Sub
 End Class

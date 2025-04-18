@@ -4,7 +4,7 @@
 Public Class Form1
     Public Shared LoggedInEmail As String
 
-    Private Sub loginbtn_Click(sender As Object, e As EventArgs) Handles loginbtn.Click
+    Private Sub Loginbtn_Click(sender As Object, e As EventArgs) Handles loginbtn.Click
         Dim email As String = emaltxt.Text.Trim()
         Dim password As String = passtxt.Text.Trim()
 
@@ -36,8 +36,7 @@ Public Class Form1
             reader.Close()
         Catch ex As Exception
             MessageBox.Show("Error: " & ex.Message)
-        Finally
-            CloseConnection()
+
         End Try
     End Sub
 

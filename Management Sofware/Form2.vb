@@ -24,12 +24,11 @@ Public Class Form2
             If result > 0 Then
                 MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                ' Clear fields
                 username.Text = ""
                 email.Text = ""
                 password.Text = ""
 
-                ' Redirect to Login Form (Form1)
+
                 Dim loginForm As New Form1()
                 loginForm.Show()
                 Me.Hide()

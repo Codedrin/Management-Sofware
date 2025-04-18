@@ -1,83 +1,63 @@
-﻿Imports System.Net.Http
-Imports System.Text
-Imports System.Threading.Tasks
-Imports Newtonsoft.Json
-Imports Newtonsoft.Json.Linq
+﻿Imports MySql.Data.MySqlClient
 
 Public Class forgotpassword
-    Private Async Sub changepass_Click(sender As Object, e As EventArgs) Handles changepass.Click
-        Dim email As String = emalfor.Text
-        Dim newPassword As String = newpass.Text
+    Private Sub Changepass_Click(sender As Object, e As EventArgs) Handles changepass.Click
+        Dim email As String = emalfor.Text.Trim()
+        Dim newPassword As String = newpass.Text.Trim()
 
         If email = "" Or newPassword = "" Then
             MessageBox.Show("Please enter your email and new password.")
             Return
         End If
 
-        Dim firebaseUrl As String = "https://guidance-management-syst-70349-default-rtdb.firebaseio.com/accounts.json"
+        Try
+            OpenConnection()
 
-        Using client As New HttpClient()
-            Try
-                ' Kunin lahat ng account data mula sa Firebase
-                Dim response As HttpResponseMessage = Await client.GetAsync(firebaseUrl)
-                If response.IsSuccessStatusCode Then
-                    Dim jsonResponse As String = Await response.Content.ReadAsStringAsync()
-                    Dim accounts As JObject = JObject.Parse(jsonResponse)
+            ' Check if the email exists
+            Dim checkQuery As String = "SELECT * FROM users WHERE email = @Email"
+            Using checkCmd As New MySqlCommand(checkQuery, conn)
+                checkCmd.Parameters.AddWithValue("@Email", email)
 
-                    Dim userKey As String = Nothing
+                Using reader As MySqlDataReader = checkCmd.ExecuteReader()
+                    If reader.HasRows Then
+                        reader.Close()
 
-                    ' Hanapin ang email sa database
-                    For Each account In accounts
-                        Dim userData As JObject = account.Value
-                        If userData("email").ToString() = email Then
-                            userKey = account.Key ' Kunin ang unique key ng user
-                            Exit For
-                        End If
-                    Next
+                        ' Update password
+                        Dim updateQuery As String = "UPDATE users SET password = @NewPassword WHERE email = @Email"
+                        Using updateCmd As New MySqlCommand(updateQuery, conn)
+                            updateCmd.Parameters.AddWithValue("@NewPassword", newPassword)
+                            updateCmd.Parameters.AddWithValue("@Email", email)
 
-                    If userKey IsNot Nothing Then
-                        ' Update ang password sa Firebase
-                        Dim updateUrl As String = $"https://guidance-management-syst-70349-default-rtdb.firebaseio.com/accounts/{userKey}.json"
-                        Dim updatedData As New JObject From {{"password", newPassword}}
-                        Dim json As String = JsonConvert.SerializeObject(updatedData)
-                        Dim content As New StringContent(json, Encoding.UTF8, "application/json")
-
-                        Dim updateResponse As HttpResponseMessage = Await client.PatchAsync(updateUrl, content)
-
-                        If updateResponse.IsSuccessStatusCode Then
-                            MessageBox.Show("Password updated successfully!")
-                        Else
-                            MessageBox.Show("Failed to update password.")
-                        End If
+                            Dim result As Integer = updateCmd.ExecuteNonQuery()
+                            If result > 0 Then
+                                MessageBox.Show("Password updated successfully!")
+                            Else
+                                MessageBox.Show("Failed to update password.")
+                            End If
+                        End Using
                     Else
                         MessageBox.Show("Email not found in the database.")
                     End If
-                Else
-                    MessageBox.Show("Failed to connect to Firebase.")
-                End If
-            Catch ex As Exception
-                MessageBox.Show("Error: " & ex.Message)
-            End Try
-        End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        Finally
+            CloseConnection()
+        End Try
     End Sub
 
-    Private Sub back_Click(sender As Object, e As EventArgs) Handles backbutton.Click
+    Private Sub Back_Click(sender As Object, e As EventArgs) Handles backbutton.Click
         Dim form1 As New Form1()
         form1.Show()
-        Me.Hide() ' Itago ang kasalukuyang form
+        Me.Hide()
     End Sub
 
-    Private Sub forgotpassword_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub seepass3_CheckedChanged(sender As Object, e As EventArgs) Handles seepass3.CheckedChanged
+    Private Sub Seepass3_CheckedChanged(sender As Object, e As EventArgs) Handles seepass3.CheckedChanged
         If seepass3.Checked Then
-            newpass.PasswordChar = ControlChars.NullChar ' Ipakita ang password
+            newpass.PasswordChar = ControlChars.NullChar
         Else
-            newpass.PasswordChar = "•"c ' Itago ang password
+            newpass.PasswordChar = "•"c
         End If
     End Sub
-
-
 End Class
